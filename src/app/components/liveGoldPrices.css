@@ -1,0 +1,527 @@
+/* src/components/LiveGoldPrices.css */
+.gold-prices-section {
+  padding: 60px 20px;
+  background: var(--cream);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-prices-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  /* background: linear-gradient(135deg, var(--gold) 0%, var(--dark-green) 100%); */
+  opacity: 0.05;
+  z-index: 1;
+}
+
+.gold-prices-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--dark-green);
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--green-secondary));
+  border-radius: 2px;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--font-color);
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.last-updated {
+  font-size: 0.9rem;
+  color: var(--green-secondary);
+  background: rgba(46, 139, 87, 0.1);
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Price Cards */
+.price-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.price-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 24px;
+  padding: 30px 25px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: slideInUp 0.8s ease-out;
+}
+
+.price-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.price-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.price-card:hover::before {
+  left: 100%;
+}
+
+.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+  border-color: var(--gold);
+}
+
+.gold-24k {
+  border-left: 4px solid var(--gold);
+}
+
+.gold-22k {
+  border-left: 4px solid var(--green-secondary);
+}
+
+.price-card-header {
+  margin-bottom: 25px;
+}
+
+.price-icon {
+  width: 60px;
+  height: 40px;
+  margin: 0 auto 15px;
+  position: relative;
+}
+
+.gold-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--gold) 0%, #f4d03f 100%);
+  border-radius: 8px;
+  position: relative;
+  animation: goldShine 3s ease-in-out infinite;
+}
+
+.gold-bar::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+}
+
+.gold-bar::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 1px;
+}
+
+.price-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--dark-green);
+  margin: 0 0 8px 0;
+}
+
+.purity {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.price-value {
+  position: relative;
+}
+
+.price {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin-bottom: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.price-unit {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Skeleton Loading */
+.price-skeleton {
+  height: 2.2rem;
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+/* Chart Container */
+.chart-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.chart-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.chart-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--dark-green);
+  margin: 0;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 400px;
+}
+
+.chart-skeleton {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.skeleton-line {
+  height: 4px;
+  background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 2px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.skeleton-line:nth-child(1) { width: 90%; }
+.skeleton-line:nth-child(2) { width: 75%; }
+.skeleton-line:nth-child(3) { width: 85%; }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .gold-prices-section {
+    padding: 40px 15px;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .price-cards {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  
+  .price-card {
+    padding: 25px 20px;
+  }
+  
+  .price {
+    font-size: 1.8rem;
+  }
+  
+  .chart-container {
+    padding: 20px 15px;
+  }
+  
+  .chart-wrapper {
+    height: 300px;
+  }
+  
+  .chart-header h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .price-card {
+    padding: 20px 15px;
+  }
+  
+  .price {
+    font-size: 1.6rem;
+  }
+  
+  .chart-wrapper {
+    height: 250px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes goldShine {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* src/components/GoldPriceChart.css */
+.chart-component {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.chart-component canvas {
+  border-radius: 12px;
+}
+
+/* src/components/admin/AdminGoldPriceConfig.css */
+.admin-config-container {
+  padding: 40px 20px;
+  background: var(--off-white);
+  min-height: 100vh;
+}
+
+.admin-config-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.admin-config-card h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--dark-green);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.config-description {
+  text-align: center;
+  color: var(--font-color);
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--dark-green);
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.config-input {
+  padding: 15px 20px;
+  border: 2px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--font-color);
+  transition: all 0.3s ease;
+}
+
+.config-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-group small {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.update-btn {
+  padding: 15px 30px;
+  background: linear-gradient(135deg, var(--dark-green), var(--green-secondary));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.update-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.update-btn:hover::before {
+  left: 100%;
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 66, 37, 0.3);
+}
+
+.update-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.update-btn.success {
+  background: linear-gradient(135deg, var(--green-secondary), var(--gold));
+  animation: success-pulse 0.6s ease-out;
+}
+
+@keyframes success-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .admin-config-container {
+    padding: 20px 15px;
+  }
+  
+  .admin-config-card {
+    padding: 30px 20px;
+  }
+  
+  .admin-config-card h2 {
+    font-size: 1.6rem;
+  }
+}

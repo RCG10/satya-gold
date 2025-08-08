@@ -1,0 +1,47 @@
+.policy-section {
+  background-color: var(--cream);
+  padding: 3rem 1.5rem;
+}
+
+.policy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  background: var(--light);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.policy-title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  color: var(--dark-green);
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--gold);
+  padding-left: 0.75rem;
+}
+
+.policy-list {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--font-color);
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+
+.policy-list li {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .policy-title {
+    font-size: 2rem;
+  }
+
+  .policy-list {
+    font-size: 1.1rem;
+  }
+}

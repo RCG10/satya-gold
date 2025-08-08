@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Marcellus&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cardo:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --green-secondary: #2E8B57;
+  --gold: #D4AF37;
+  --gold-gradient: linear-gradient(90deg, #D4AF37, #FFD700);
+  --dark: #0f0f0f;
+  --light: #ffffff;
+  --muted: #cccccc;
+  --dark-green: #004225;
+  --off-white: #F5F5DC;
+  --cream: #FDF6E3;
+  --font-color: #333333;
+  --font-heading: 'Marcellus', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+.main-header {
+  position: fixed;
+  top: 0;
+  background-color: var(--cream);
+  padding: 10px;
+  overflow: hidden;
+  z-index: 10;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Blob/Semicircle Container */
+.logo-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: var(--dark-green);
+  border-bottom-right-radius: 100px;
+  border-top-left-radius: 100px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background-color: var(--light);
+}
+
+/* Brand Section */
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.site-title {
+  font-family: 'Cardo', serif;
+  font-size: 1.6rem;
+
+  font-weight: 600;
+  /* color: #B8860B; Dark goldenrod for richer gold look */
+  color:#A77F0A;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); */
+  transition: all 0.3s ease;
+}
+
+.site-title:hover {
+  transform: scale(1.02);
+  /* text-shadow: 0 0 6px rgba(184, 134, 11, 0.5); */
+}
+
+
+
+.tagline {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--green-secondary);
+  font-weight: 500;
+  margin-top: 0.2rem;
+}
+
+/* Decorative Element (optional line) */
+.header-ornament {
+  margin-top: 1rem;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.7;
+  border-radius: 2px;
+}
+
+/* Responsive Layout */
+@media (min-width: 768px) {
+  .main-header {
+    padding: 5px;
+  }
+
+  .header-content {
+    gap: 2rem;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .tagline {
+    font-size: 1.1rem;
+  }
+
+  .logo-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+  }
+}
