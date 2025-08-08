@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import './header.css';
 
 const Header = () => (
   <header className="main-header">
     <div className="header-content">
       <div className="logo-container">
-        <img src="/satya_gold_logo.png" alt="Satya Gold Company Logo" className="logo" />
+        <Image src="/satya_gold_logo.png" alt="Satya Gold Company Logo" className="logo" />
       </div>
       <div className="brand-section">
         <div className="site-title">Sathya Gold Company</div>

@@ -18,7 +18,7 @@ const LandingHero = () => (
         </h1>
         
         <p className="hero-description">
-          Experience seamless gold trading with Mangalore's most trusted name. 
+          Experience seamless gold trading with Mangalore`&apos;s most trusted name. 
           We offer competitive rates, secure transactions, and expert guidance 
           for all your precious metal investments.
         </p>
@@ -67,7 +67,7 @@ const LandingHero = () => (
       <div className="hero-visual">
         <div className="gold-card">
           <div className="card-header">
-            <h3>Today's Gold Rate</h3>
+            <h3>Today`&apos;s Gold Rate</h3>
             <span className="live-indicator">● LIVE</span>
           </div>
           <div className="rate-display">
